@@ -41,12 +41,12 @@ void GameScene::startLevel(int level) {
     particles.clear(); // should we delete all first? Or is this sufficient?
     for(int i = 0; i<level*1000; i++) {
         Particle* particle = new Particle(i);
-        particle->setX((qreal)rand()/(qreal)RAND_MAX * 500);
-        particle->setY((qreal)rand()/(qreal)RAND_MAX * 500);
+        particle->setX((qreal)rand()/(qreal)RAND_MAX * 25);
+        particle->setY(50 + (qreal)rand()/(qreal)RAND_MAX * 25);
         particles.append(particle);
         addItem(particle);
     }
-    Planet* planet = new Planet(20, 100,0);
+    Planet* planet = new Planet(20, 300,50);
     _planets.append(planet);
     addItem(planet);
 
