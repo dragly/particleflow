@@ -30,7 +30,8 @@ QT += opengl
 SOURCES += main.cpp \
     gameview.cpp \
     gamescene.cpp \
-    particle.cpp
+    particle.cpp \
+    planet.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -42,4 +43,5 @@ OTHER_FILES += \
 HEADERS += \
     gameview.h \
     gamescene.h \
-    particle.h
+    particle.h \
+    planet.h

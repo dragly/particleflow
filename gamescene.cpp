@@ -8,17 +8,24 @@
 #endif
 
 GameScene::GameScene(QObject *parent) :
-    QGraphicsScene(parent), currentParticleNumber(0)
+    QGraphicsScene(parent), currentParticleNumber(0), _dt(0), firstStep(true    )
 {
-    setSceneRect(-500, -500, 1000, 1000);
-
+    currentParticleNumber = 0;
     startLevel(1);
-
+    time.start();
     connect(&advanceTimer, SIGNAL(timeout()), SLOT(advance()));
     advanceTimer.start(1);
 }
 
 void GameScene::advance() {
+    currentTime = time.elapsed();
+    if(firstStep) {
+        _dt = 0;
+        firstStep = false;
+    } else {
+        _dt = (currentTime - lastFrameTime) / 1000.0;
+    }
+    lastFrameTime = currentTime;
 
     // Activate the next not yet active particle
     if(currentParticleNumber < particles.length()) {
@@ -33,9 +40,19 @@ void GameScene::startLevel(int level) {
     // Generate particles
     particles.clear(); // should we delete all first? Or is this sufficient?
     for(int i = 0; i<level*1000; i++) {
-        Particle* particle = new Particle();
+        Particle* particle = new Particle(i);
+        particle->setX((qreal)rand()/(qreal)RAND_MAX * 500);
+        particle->setY((qreal)rand()/(qreal)RAND_MAX * 500);
         particles.append(particle);
         addItem(particle);
     }
+    Planet* planet = new Planet(20, 100,0);
+    _planets.append(planet);
+    addItem(planet);
+
     currentParticleNumber = 0;
+}
+
+void GameScene::resized() {
+    qDebug() << "Resized!";
 }

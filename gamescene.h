@@ -3,8 +3,10 @@
 
 #include <QGraphicsScene>
 #include <QTimer>
+#include <QTime>
 
 #include "particle.h"
+#include "planet.h"
 
 class GameScene : public QGraphicsScene
 {
@@ -15,6 +17,12 @@ public:
     int level() {return _level; }
     void startLevel(int level);
 
+    void resized();
+
+    QList<Planet*> planets() {return _planets; }
+
+    qreal dt() {return _dt; }
+
 signals:
 
 public slots:
@@ -23,8 +31,14 @@ public slots:
 private:
     QTimer advanceTimer;
     QList<Particle*> particles;
+    QList<Planet*> _planets;
     int _level;
     int currentParticleNumber;
+    qreal _dt;
+    bool firstStep;
+    int currentTime;
+    int lastFrameTime;
+    QTime time;
 };
 
 #endif // GAMESCENE_H

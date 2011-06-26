@@ -1,25 +1,22 @@
-#ifndef PARTICLE_H
-#define PARTICLE_H
+#ifndef PLANET_H
+#define PLANET_H
 
 #include <QGraphicsItem>
 #include <QPainter>
 #include <QDebug>
-#include <QVector2D>
 
-class GameScene;
-
-class Particle : public QGraphicsObject
+class Planet : public QGraphicsObject
 {
     Q_OBJECT
 public:
-    explicit Particle(int number);
+    explicit Planet(qreal radius, qreal x, qreal y);
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     QRectF boundingRect() const;
+    qreal radius() { return _radius; }
 
     bool active() {return _active; }
     void setActive(bool active) {_active = active;}
-    GameScene *gameScene();
 protected:
     void advance(int phase);
 
@@ -29,9 +26,8 @@ public slots:
 
 private:
     bool _active;
-    int _number;
-    QVector2D _velocity;
+    qreal _radius;
 
 };
 
-#endif // PARTICLE_H
+#endif // PLANET_H

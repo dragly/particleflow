@@ -19,9 +19,9 @@ GameView::GameView() :
     setRenderHint(QPainter::SmoothPixmapTransform,true);
     setBackgroundBrush(QImage(":/images/background.png"));
     setCacheMode(QGraphicsView::CacheBackground);
-//    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-//    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    setViewportUpdateMode(QGraphicsView::BoundingRectViewportUpdate);
+    setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
     setWindowTitle(QT_TRANSLATE_NOOP(QGraphicsView, "Particle Flow"));
     setStyleSheet("QGraphicsView { border-style: none; }");
     setInteractive(true);
@@ -51,8 +51,9 @@ void GameView::changeEvent(QEvent *event) {
 void GameView::resizeEvent(QResizeEvent *event) {
     qDebug() << "resize";
     Q_UNUSED(event)
+    scene()->setSceneRect(0,0,width(),height());
     GameScene* gameScene = (GameScene*)scene();
-//    gameScene->resized();
+    gameScene->resized();
     qDebug() << "resized";
 }
 
