@@ -20,6 +20,9 @@ public:
     bool active() {return _active; }
     void setActive(bool active) {_active = active;}
     GameScene *gameScene();
+
+    QVector2D velocity() {return _velocity; }
+    void setVelocity(QVector2D velocity) { _velocity = velocity; }
 protected:
     void advance(int phase);
 

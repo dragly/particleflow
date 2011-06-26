@@ -4,7 +4,7 @@
 #include <QStaticText>
 
 Particle::Particle(int number) :
-    QGraphicsObject(), _active(false), _velocity(10,0)
+    QGraphicsObject(), _active(false), _velocity(0,0)
 {
     _number = number;
     _velocity.setY(number*0.01);
