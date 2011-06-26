@@ -1,0 +1,7 @@
+Starting out with the following classes or items:
+
+Particle : QGraphicsItem
+Planet : QGraphicsItem
+ParticleGenerator : QGraphicsItem
+ParticleBucket : QGraphicsItem
+

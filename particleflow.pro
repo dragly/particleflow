@@ -23,9 +23,23 @@ symbian:TARGET.CAPABILITY += NetworkServices
 # CONFIG += mobility
 # MOBILITY +=
 
+QT += core gui declarative
+QT += opengl
+
 # The .cpp file which was generated for your project. Feel free to hack it.
-SOURCES += main.cpp
+SOURCES += main.cpp \
+    gameview.cpp \
+    gamescene.cpp \
+    particle.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
 qtcAddDeployment()
+
+OTHER_FILES += \
+    README
+
+HEADERS += \
+    gameview.h \
+    gamescene.h \
+    particle.h
