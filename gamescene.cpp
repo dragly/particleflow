@@ -46,13 +46,17 @@ void GameScene::startLevel(int level) {
         Particle* particle = new Particle(i);
         addItem(particle); // always add items before adjusting position (because they need a gameScene)
         particle->setPosition(0, 0.25 + random() * 0.01);
-        particle->setVelocity(0.1 + random() * 0.02, 0.02 + random() * 0.02);
+        particle->setVelocity(0.1 + random() * 0.02, 0.02 + random() * 0.04);
         particles.append(particle);
     }
     Planet* planet = new Planet(0.03);
     addItem(planet);
     _planets.append(planet);
     planet->setPosition(0.8,0.25);
+    Planet* planet2 = new Planet(0.03);
+    addItem(planet2);
+    _planets.append(planet2);
+    planet2->setPosition(0.4,0.1);
 
     currentParticleNumber = 0;
 }
