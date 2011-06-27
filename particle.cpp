@@ -31,15 +31,17 @@ void Particle::advance(int phase){
             QVector2D r = QVector2D(this->position() - planet->position());
             // save the length and lengthSquared to memory to avoid recalculations (with square roots!)
     //        double distance = r.length();
-            double distanceSquared = r.lengthSquared();
+            double distanceSquared = r.lengthSquared() - planet->radius()*planet->radius();
             QVector2D rn = r.normalized();
             if(distanceSquared != 0) {
                 QVector2D gravity = - rn * 0.001 / distanceSquared;
                 force += gravity;
 
-                if (distanceSquared < planet->radius()*planet->radius()) { //Vj: Temporary fix while testing :O)
+                if (r.lengthSquared() < planet->radius()*planet->radius()) { //Vj: Temporary fix while testing :O)
                     force=QVector2D(0,0);
                     _velocity = QVector2D(0,0);
+                    planet->increaseRadius();
+                    setActive(false);
                     break;
                 }
             }

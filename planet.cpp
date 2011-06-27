@@ -1,6 +1,7 @@
 #include "planet.h"
 
 #include "gamescene.h"
+#include "math.h"
 
 Planet::Planet(qreal radius) : GameObject()
 {
@@ -22,4 +23,10 @@ QRectF Planet::boundingRect() const {
 }
 
 void Planet::advance(int phase){
+}
+
+void Planet::increaseRadius() {
+    //_radius+=0.001;
+    //alt:
+   _radius = sqrt(_radius*_radius +0.00001);
 }

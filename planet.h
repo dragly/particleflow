@@ -16,6 +16,7 @@ public:
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     QRectF boundingRect() const;
     qreal radius() { return _radius; }
+    void increaseRadius();
 
     bool active() {return _active; }
     void setActive(bool active) {_active = active;}
