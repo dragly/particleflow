@@ -31,7 +31,8 @@ SOURCES += main.cpp \
     gameview.cpp \
     gamescene.cpp \
     particle.cpp \
-    planet.cpp
+    planet.cpp \
+    gameobject.cpp
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
@@ -56,4 +57,5 @@ HEADERS += \
     gameview.h \
     gamescene.h \
     particle.h \
-    planet.h
+    planet.h \
+    gameobject.h

@@ -5,11 +5,13 @@
 #include <QPainter>
 #include <QDebug>
 
-class Planet : public QGraphicsObject
+#include "gameobject.h"
+
+class Planet : public GameObject
 {
     Q_OBJECT
 public:
-    explicit Planet(qreal radius, qreal x, qreal y);
+    explicit Planet(qreal radius);
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     QRectF boundingRect() const;

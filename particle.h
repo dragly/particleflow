@@ -6,9 +6,9 @@
 #include <QDebug>
 #include <QVector2D>
 
-class GameScene;
+#include "gameobject.h"
 
-class Particle : public QGraphicsObject
+class Particle : public GameObject
 {
     Q_OBJECT
 public:
@@ -18,11 +18,9 @@ public:
     QRectF boundingRect() const;
 
     bool active() {return _active; }
-    void setActive(bool active) {_active = active;}
-    GameScene *gameScene();
 
-    QVector2D velocity() {return _velocity; }
-    void setVelocity(QVector2D velocity) { _velocity = velocity; }
+    void setActive(bool active) {_active = active;}
+
 protected:
     void advance(int phase);
 
@@ -33,7 +31,6 @@ public slots:
 private:
     bool _active;
     int _number;
-    QVector2D _velocity;
 
 };
 
