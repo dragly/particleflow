@@ -11,7 +11,8 @@ Particle::Particle(int number) :
 
 void Particle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
     if(active()) {
-        painter->setPen(QPen(Qt::blue));
+       // painter->setPen(QPen(Qt::blue));
+         painter->setBrush(QBrush(Qt::blue));
         painter->drawRect(-2.5,-2.5,5,5);
 //                painter->drawPoint(0,0);
         //        painter->drawStaticText(0,0,QStaticText(QString::number(_number)));
