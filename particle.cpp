@@ -34,7 +34,7 @@ void Particle::advance(int phase){
             double distanceSquared = r.lengthSquared();
             QVector2D rn = r.normalized();
             if(distanceSquared != 0) {
-                QVector2D gravity = - rn * 0.01 / distanceSquared;
+                QVector2D gravity = - rn * 0.001 / distanceSquared;
                 force += gravity;
 
                 if (distanceSquared < planet->radius()*planet->radius()) { //Vj: Temporary fix while testing :O)
