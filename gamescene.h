@@ -2,6 +2,7 @@
 #define GAMESCENE_H
 
 #include <QGraphicsScene>
+#include <QtGui>
 #include <QTimer>
 #include <QTime>
 
@@ -21,6 +22,9 @@ public:
     void resized();
 
     QList<Planet*> planets() {return _planets; }
+    QList<Particle*> particles() {return _particles; }
+
+    void removeParticle(Particle* particle);
 
     qreal dt() {return _dt; }
 
@@ -46,7 +50,7 @@ public slots:
 
 private:
     QTimer advanceTimer;
-    QList<Particle*> particles;
+    QList<Particle*> _particles;
     QList<Planet*> _planets;
     int _level;
     int currentParticleNumber;
@@ -55,6 +59,18 @@ private:
     int currentTime;
     int lastFrameTime;
     QTime time;
+
+    qreal particlesToAdd;
+
+    // Particle generator (could be moved to a separate class that handles particle generation?)
+    QVector2D generatorVelocityDirection;
+    qreal generatorVelocityMagnitude;
+    QVector2D generatorPosition;
+
+    void aimGenerator(QPointF scenePosition);
+
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *event);
+    void mousePressEvent(QGraphicsSceneMouseEvent *event);
 };
 
 Q_DECLARE_OPERATORS_FOR_FLAGS(GameScene::RelativeModes)

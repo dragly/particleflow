@@ -12,7 +12,7 @@ class Particle : public GameObject
 {
     Q_OBJECT
 public:
-    explicit Particle(int number);
+    explicit Particle();
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     QRectF boundingRect() const;
@@ -30,7 +30,6 @@ public slots:
 
 private:
     bool _active;
-    int _number;
 
 };
 

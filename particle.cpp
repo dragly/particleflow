@@ -3,10 +3,11 @@
 
 #include <QStaticText>
 
-Particle::Particle(int number) :
+static qreal GravityConstant = 0.001;
+
+Particle::Particle() :
     GameObject(), _active(false)
 {
-    _number = number;
 }
 
 void Particle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
@@ -15,7 +16,6 @@ void Particle::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, 
          painter->setBrush(QBrush(Qt::blue));
         painter->drawRect(-2.5,-2.5,5,5);
 //                painter->drawPoint(0,0);
-        //        painter->drawStaticText(0,0,QStaticText(QString::number(_number)));
     }
 }
 
@@ -34,15 +34,13 @@ void Particle::advance(int phase){
             double distanceSquared = r.lengthSquared() - planet->radius()*planet->radius();
             QVector2D rn = r.normalized();
             if(distanceSquared != 0) {
-                QVector2D gravity = - rn * 0.001 / distanceSquared;
+                QVector2D gravity = - rn * GravityConstant * planet->mass() / distanceSquared;
                 force += gravity;
 
                 if (r.lengthSquared() < planet->radius()*planet->radius()) { //Vj: Temporary fix while testing :O)
-                    force=QVector2D(0,0);
-                    _velocity = QVector2D(0,0);
-                    planet->increaseRadius();
-                    setActive(false);
-                    break;
+                    planet->collideWithParticle();
+                    gameScene()->removeParticle(this);
+                    return;
                 }
             }
         }
@@ -50,5 +48,8 @@ void Particle::advance(int phase){
         _velocity += acceleration * gameScene()->dt();
         _position += _velocity * gameScene()->dt();
         resized();
+    }
+    if(position().lengthSquared() > 5.0) { // if we are too far away to be useful, just delete this particle
+        gameScene()->removeParticle(this);
     }
 }

@@ -11,12 +11,13 @@ class Planet : public GameObject
 {
     Q_OBJECT
 public:
-    explicit Planet(qreal radius);
+    explicit Planet(qreal radius, qreal mass);
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     QRectF boundingRect() const;
     qreal radius() { return _radius; }
-    void increaseRadius();
+    qreal mass() {return _mass; }
+    void collideWithParticle();
 
     bool active() {return _active; }
     void setActive(bool active) {_active = active;}
@@ -30,6 +31,7 @@ public slots:
 private:
     bool _active;
     qreal _radius;
+    qreal _mass;
 
 };
 

@@ -3,9 +3,10 @@
 #include "gamescene.h"
 #include "math.h"
 
-Planet::Planet(qreal radius) : GameObject()
+Planet::Planet(qreal radius, qreal mass) : GameObject()
 {
     _radius = radius;
+    _mass = mass;
     setActive(true);
 }
 
@@ -25,8 +26,9 @@ QRectF Planet::boundingRect() const {
 void Planet::advance(int phase){
 }
 
-void Planet::increaseRadius() {
+void Planet::collideWithParticle() {
     //_radius+=0.001;
     //alt:
-   _radius = sqrt(_radius*_radius +0.00001);
+   _radius = sqrt(_radius*_radius +0.000001);
+   _mass +=0.0001; // increase the mass
 }
