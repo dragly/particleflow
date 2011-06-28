@@ -31,7 +31,7 @@ void Particle::advance(int phase){
             QVector2D r = QVector2D(this->position() - planet->position());
             // save the length and lengthSquared to memory to avoid recalculations (with square roots!)
     //        double distance = r.length();
-            double distanceSquared = r.lengthSquared() - planet->radius()*planet->radius();
+            double distanceSquared = r.lengthSquared();
             QVector2D rn = r.normalized();
             if(distanceSquared != 0) {
                 QVector2D gravity = - rn * GravityConstant * planet->mass() / distanceSquared;
